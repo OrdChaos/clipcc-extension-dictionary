@@ -1,0 +1,20 @@
+{
+    "ordchaosxq.dictionary.name": "字典",
+    "ordchaosxq.dictionary.description": "为 Clipcc 提供字典功能",
+    "ordchaosxq.dictionary.category.message": "字典",
+    "ordchaosxq.dictionary.new.message": "创建名为 [NAME] 的字典",
+    "ordchaosxq.dictionary.delate.message": "删除名为 [NAME] 的字典",
+    "ordchaosxq.dictionary.addvalue.message": "在字典 [NAME] 中添加键值对 [KEY] : [VALUE]",
+    "ordchaosxq.dictionary.delatevalue.message": "在字典 [NAME] 中删除键为 [KEY] 的键值对",
+    "ordchaosxq.dictionary.erasedictionary.message": "清空字典 [NAME] 的值",
+    "ordchaosxq.dictionary.delatealldictionary.message": "删除所有字典",
+    "ordchaosxq.dictionary.getvalue.message": "字典 [NAME] 中键为 [KEY] 的键值对中的值",
+    "ordchaosxq.dictionary.getnumber.message": "字典 [NAME] 中键值对的数量",
+    "ordchaosxq.dictionary.getnumbervalue.message": "字典 [NAME] 中值为 [VALUE] 的键值对的数量",
+    "ordchaosxq.dictionary.getnumberofalldictionary.message": "已创建的字典数量",
+    "ordchaosxq.dictionary.isdictionaryexists.message": "是否存在名为 [NAME] 的字典？",
+    "ordchaosxq.dictionary.iskeyexists.message": "字典 [NAME] 中是否存在键为 [KEY] 的键值对？",
+    "ordchaosxq.dictionary.isvalueexists.message": "字典 [NAME] 中是否存在值为 [VALUE] 的键值对？",
+    "ordchaosxq.dictionary.isdictionaryempty.message": "字典 [NAME] 是否为空？",
+    "ordchaosxq.dictionary.isanydictionaryexists.message": "是否存在任何字典？"
+}

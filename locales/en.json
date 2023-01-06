@@ -1,0 +1,20 @@
+{
+    "ordchaosxq.dictionary.name": "Dictionary",
+    "ordchaosxq.dictionary.description": "Support dictionary for Clipcc",
+    "ordchaosxq.dictionary.category.message": "Dictionary",
+    "ordchaosxq.dictionary.new.message": "Create a dictionary which is named [NAME]",
+    "ordchaosxq.dictionary.delate.message": "Delete the dictionary which is named [NAME]",
+    "ordchaosxq.dictionary.addvalue.message": "Add a key-value pair [KEY] : [VALUE] in the dictionary [NAME]",
+    "ordchaosxq.dictionary.delatevalue.message": "Delate the key-value pair which it's key is [KEY] in the dictionary [NAME]",
+    "ordchaosxq.dictionary.erasedictionary.message": "Clear value of dictionary [NAME]",
+    "ordchaosxq.dictionary.delatealldictionary.message": "Delete all dictionaries",
+    "ordchaosxq.dictionary.getvalue.message": "The value of the key-value pair which it's key is [KEY] in the dictionary [NAME]",
+    "ordchaosxq.dictionary.getnumber.message": "Number of key-value pairs in dictionary [NAME]",
+    "ordchaosxq.dictionary.getnumbervalue.message": "Number of the values [VALUE] in the dictionary [NAME]",
+    "ordchaosxq.dictionary.getnumberofalldictionary.message": "The number of dictionaries those were created",
+    "ordchaosxq.dictionary.isdictionaryexists.message": "Is there a dictionary named [NAME] ?",
+    "ordchaosxq.dictionary.iskeyexists.message": "Does dictionary [NAME] have a key-value pair with key [KEY]?",
+    "ordchaosxq.dictionary.isvalueexists.message": "Does dictionary [NAME] have a key-value pair with value [VALUE]?",
+    "ordchaosxq.dictionary.isdictionaryempty.message": "Is the dictionary [NAME] empty?",
+    "ordchaosxq.dictionary.isanydictionaryexists.message": "Are there any dictionaries?"
+}

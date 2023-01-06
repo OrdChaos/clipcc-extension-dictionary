@@ -218,7 +218,7 @@ class OCXQDictionary extends Extension {
 
     onUninit() {
         api.removeCategory('ordchaosxq.dictionary.category');
-        DictionaryList = undefined;
+        this.delateAllDictionary();
     }
 
     newDictionary(NAME) {

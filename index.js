@@ -57,6 +57,27 @@ class OCXQDictionary extends Extension {
             function: args => this.addValue(args.NAME, args.KEY, args.VALUE)
         });
         api.addBlock({
+            opcode: 'ordchaosxq.dictionary.editvalue',
+            type: type.BlockType.COMMAND,
+            messageId: 'ordchaosxq.dictionary.editvalue.message',
+            categoryId: 'ordchaosxq.dictionary.category',
+            param: {
+                NAME: {
+                    type: type.ParameterType.STRING,
+                    default: 'Dictionary'
+                },
+                KEY: {
+                    type: type.ParameterType.STRING,
+                    default: 'Key'
+                },
+                VALUE: {
+                    type: type.ParameterType.STRING,
+                    default: 'Value'
+                }
+            },
+            function: args => this.editValue(args.NAME, args.KEY, args.VALUE)
+        });
+        api.addBlock({
             opcode: 'ordchaosxq.dictionary.delatevalue',
             type: type.BlockType.COMMAND,
             messageId: 'ordchaosxq.dictionary.delatevalue.message',
@@ -85,6 +106,36 @@ class OCXQDictionary extends Extension {
                 }
             },
             function: args => this.eraseDictionary(args.NAME)
+        });
+        api.addBlock({
+            opcode: 'ordchaosxq.dictionary.setdictionary',
+            type: type.BlockType.COMMAND,
+            messageId: 'ordchaosxq.dictionary.setdictionary.message',
+            categoryId: 'ordchaosxq.dictionary.category',
+            param: {
+                NAME: {
+                    type: type.ParameterType.STRING,
+                    default: 'Dictionary'
+                },
+                DICTIONARY: {
+                    type: type.ParameterType.STRING,
+                    default: '{\"Key\": \"Value\"}'
+                }
+            },
+            function: args => this.setDictionary(args.NAME, args.DICTIONARY)
+        });
+        api.addBlock({
+            opcode: 'ordchaosxq.dictionary.setalldictionary',
+            type: type.BlockType.COMMAND,
+            messageId: 'ordchaosxq.dictionary.setalldictionary.message',
+            categoryId: 'ordchaosxq.dictionary.category',
+            param: {
+                DICTIONARIES: {
+                    type: type.ParameterType.STRING,
+                    default: '{\"Dictionary\": {\"Key\": \"Value\"}}'
+                }
+            },
+            function: args => this.setAllDictionary(args.DICTIONARIES)
         });
         api.addBlock({
             opcode: 'ordchaosxq.dictionary.delatealldictionary',
@@ -139,6 +190,26 @@ class OCXQDictionary extends Extension {
                 }
             },
             function: args => this.getNumber(args.NAME)
+        });
+        api.addBlock({
+            opcode: 'ordchaosxq.dictionary.getdictionary',
+            type: type.BlockType.REPORTER,
+            messageId: 'ordchaosxq.dictionary.getdictionary.message',
+            categoryId: 'ordchaosxq.dictionary.category',
+            param: {
+                NAME: {
+                    type: type.ParameterType.STRING,
+                    default: 'Dictionary'
+                }
+            },
+            function: args => this.getDictionary(args.NAME)
+        });
+        api.addBlock({
+            opcode: 'ordchaosxq.dictionary.getalldictionary',
+            type: type.BlockType.REPORTER,
+            messageId: 'ordchaosxq.dictionary.getalldictionary.message',
+            categoryId: 'ordchaosxq.dictionary.category',
+            function: () => this.getAllDictionary()
         });
         api.addBlock({
             opcode: 'ordchaosxq.dictionary.getnumberofalldictionary',
@@ -234,7 +305,13 @@ class OCXQDictionary extends Extension {
     }
 
     addValue(NAME, KEY, VALUE) {
-        if(this.isDictionaryExists(NAME)) {
+        if(this.isDictionaryExists(NAME) && !this.isKeyExists(NAME, KEY)) {
+            DictionaryList[NAME][KEY] = VALUE;
+        }
+    }
+
+    editValue(NAME, KEY, VALUE) {
+        if(this.isDictionaryExists(NAME) && this.isKeyExists(NAME, KEY)) {
             DictionaryList[NAME][KEY] = VALUE;
         }
     }
@@ -249,6 +326,16 @@ class OCXQDictionary extends Extension {
         if (this.isDictionaryExists(NAME)) {
             DictionaryList[NAME] = new Array();
         }
+    }
+
+    setDictionary(NAME, DICTIONARY) {
+        if(this.isDictionaryExists(NAME)) {
+            DictionaryList[NAME] = JSON.parse(DICTIONARY);
+        }
+    }
+
+    setAllDictionary(DICTIONARIES) {
+        DictionaryList = JSON.parse(DICTIONARIES);
     }
 
     delateAllDictionary() {
@@ -284,6 +371,45 @@ class OCXQDictionary extends Extension {
             return n;
         }
         return 'undefined';
+    }
+
+    getDictionary(NAME) {
+        if(this.isDictionaryExists(NAME)) {
+            var result = '{';
+            var flag = true;
+            for(var keys in DictionaryList[NAME]) {
+                if(flag) {
+                    flag = false;
+                }
+                else {
+                    result += ', ';
+                }
+                var temp = '\"' + keys + '\": \"' + DictionaryList[NAME][keys] + '\"';
+                result += temp;
+            }
+            result += '}';
+            return result;
+        }
+        return 'undefined';
+    }
+
+    getAllDictionary() {
+        var result = '{';
+        var flag = true;
+        if(this.isAnyDictionaryExists()) {
+            for (var keys in DictionaryList) {
+                if (flag) {
+                    flag = false;
+                }
+                else {
+                    result += ', ';
+                }
+                var temp = '\"' + keys + '\": ' + this.getDictionary(keys);
+                result += temp;
+            }
+        }
+        result += '}';
+        return result;
     }
 
     getNumberOfAllDictionary() {

@@ -343,7 +343,7 @@ class OCXQDictionary extends Extension {
     }
 
     getValue(NAME, KEY) {
-        if(this.isKeyExists(NAME, KEY)) {
+        if (this.isDictionaryExists(NAME) && this.isKeyExists(NAME, KEY)) {
             return DictionaryList[NAME][KEY];
         }
         return 'undefined';
@@ -364,7 +364,7 @@ class OCXQDictionary extends Extension {
         if(this.isDictionaryExists(NAME)) {
             var n = 0;
             for(var keys in DictionaryList[NAME]) {
-                if(DictionaryList[NAME][keys] == VALUE) {
+                if(DictionaryList[NAME][keys] === VALUE) {
                     n++;
                 }
             }
